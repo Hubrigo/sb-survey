@@ -16,4 +16,5 @@ spring:
 
 security:
   jwt:
-    secret: test-secret-key
+    private-key: ${SECURITY_JWT_PRIVATE_KEY}
+    public-key: ${SECURITY_JWT_PUBLIC_KEY}

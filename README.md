@@ -24,8 +24,13 @@ Configura las credenciales de la base de datos PostgreSQL mediante variables o m
 SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/sbsurvey
 SPRING_DATASOURCE_USERNAME=survey
 SPRING_DATASOURCE_PASSWORD=survey
-SECURITY_JWT_SECRET=cambia-esta-clave
+SECURITY_JWT_PRIVATE_KEY=<clave-privada-RSA-en-base64-DER>
+SECURITY_JWT_PUBLIC_KEY=<clave-publica-RSA-en-base64-DER>
 ```
+
+> **Nota:** si no defines las variables, la aplicación usa un par de claves RSA embebido solo para desarrollo. En producción genera
+> tu propio par (por ejemplo con `openssl`), conviértelo a DER y codifícalo en Base64 (`base64 -w 0`). Asigna cada cadena a las
+> variables anteriores para firmar y validar los JWT con **RS256**.
 
 ### Ejecutar localmente
 
