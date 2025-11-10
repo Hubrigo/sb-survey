@@ -27,6 +27,17 @@ const PublicSurveyListPage = () => {
       <header className="text-center py-4">
         <h1 className="display-6 fw-bold text-primary">Participa en nuestras encuestas</h1>
         <p className="text-muted">Explora las encuestas disponibles y comparte tu opinión.</p>
+        <p className="mt-3 mb-0">
+          ¿Eres administrador?{' '}
+          <Link className="fw-semibold" to="/login">
+            Inicia sesión
+          </Link>{' '}
+          o{' '}
+          <Link className="fw-semibold" to="/register">
+            crea una cuenta
+          </Link>{' '}
+          para gestionar tus encuestas.
+        </p>
       </header>
       <div className="row g-4">
         {surveys.map((survey) => (

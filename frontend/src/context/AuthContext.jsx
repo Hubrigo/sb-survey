@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
+import client from '../api/client.js';
 
 const TOKEN_KEY = 'survey_token';
 const AuthContext = createContext();
@@ -10,9 +12,11 @@ export const AuthProvider = ({ children }) => {
   const setAxiosToken = (value) => {
     if (value) {
       axios.defaults.headers.common.Authorization = `Bearer ${value}`;
+      client.defaults.headers.common.Authorization = `Bearer ${value}`;
       localStorage.setItem(TOKEN_KEY, value);
     } else {
       delete axios.defaults.headers.common.Authorization;
+      delete client.defaults.headers.common.Authorization;
       localStorage.removeItem(TOKEN_KEY);
     }
   };
@@ -39,6 +43,10 @@ export const AuthProvider = ({ children }) => {
   }), [token]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useAuthContext = () => {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchAdminSurveys, fetchResponses } from '../../api/surveys.js';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -33,18 +34,26 @@ const DashboardPage = () => {
           <h1 className="h3 text-primary mb-1">Panel de administración</h1>
           <p className="text-muted mb-0">Monitorea tus encuestas y respuestas en tiempo real.</p>
         </div>
-        <div className="d-flex gap-2">
+        <div className="d-flex flex-column flex-md-row gap-2">
           <select
             className="form-select"
             value={selectedSurvey || ''}
             onChange={(event) => setSelectedSurvey(Number(event.target.value))}
+            disabled={surveys.length === 0}
           >
-            {surveys.map((survey) => (
-              <option key={survey.id} value={survey.id}>
-                {survey.title}
-              </option>
-            ))}
+            {surveys.length === 0 ? (
+              <option value="">Sin encuestas disponibles</option>
+            ) : (
+              surveys.map((survey) => (
+                <option key={survey.id} value={survey.id}>
+                  {survey.title}
+                </option>
+              ))
+            )}
           </select>
+          <Link className="btn btn-primary" to="/admin/surveys/new">
+            Crear nueva encuesta
+          </Link>
         </div>
       </header>
       <section className="bg-white rounded-4 shadow-sm p-4">

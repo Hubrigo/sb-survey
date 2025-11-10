@@ -65,6 +65,28 @@ La aplicación se sirve en `http://localhost:5173` y proxifica las peticiones `/
 | `npm run lint` | Linter de React (ESLint) |
 | `mvn test` | Ejecuta las pruebas del backend |
 
+## Pruebas
+
+### Backend (Spring Boot)
+1. Verifica tener Java 11 y Maven instalados, tal como se describe en la sección de requisitos.
+2. Desde la carpeta `backend/`, ejecuta:
+   ```bash
+   mvn test
+   ```
+   Este comando levanta el contexto de Spring usando un perfil `test` que utiliza una base de datos en memoria **H2** (no necesitas tener PostgreSQL activo para los tests) y valida que la aplicación arranca correctamente.
+3. Para ejecutar una clase de prueba específica puedes usar:
+   ```bash
+   mvn -Dtest=SurveyApplicationTests test
+   ```
+
+### Frontend (React)
+Actualmente no hay pruebas automatizadas implementadas. Como verificación rápida puedes ejecutar el linter:
+```bash
+cd frontend
+npm run lint
+```
+En próximas iteraciones se pueden añadir pruebas con Vitest/React Testing Library.
+
 ## Próximos pasos
 - Añadir pruebas unitarias y de integración adicionales.
 - Implementar gestión avanzada de roles/permisos y dashboards más completos.
