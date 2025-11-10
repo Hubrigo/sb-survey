@@ -1,5 +1,6 @@
 package com.sbsurvey.app.web.controller;
 
+import com.sbsurvey.app.domain.model.Survey;
 import com.sbsurvey.app.domain.repository.SurveyRepository;
 import com.sbsurvey.app.web.dto.SurveyDto;
 import com.sbsurvey.app.web.mapper.SurveyMapper;
@@ -24,14 +25,16 @@ public class PublicSurveyController {
 
     @GetMapping
     public ResponseEntity<List<SurveyDto>> getPublishedSurveys() {
-        return ResponseEntity.ok(surveyRepository.findAllByPublishedTrue().stream()
+        return ResponseEntity.ok(surveyRepository.findAll().stream()
+                .filter(Survey::isPublished)
                 .map(surveyMapper::toSurveyDto)
                 .collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SurveyDto> getSurvey(@PathVariable Long id) {
-        return surveyRepository.findByIdAndPublishedTrue(id)
+        return surveyRepository.findById(id)
+                .filter(Survey::isPublished)
                 .map(surveyMapper::toSurveyDto)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new EntityNotFoundException("Published survey not found"));
