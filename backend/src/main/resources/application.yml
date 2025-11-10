@@ -27,5 +27,6 @@ logging:
 
 security:
   jwt:
-    secret: ${SECURITY_JWT_SECRET}
+    private-key: ${SECURITY_JWT_PRIVATE_KEY:}
+    public-key: ${SECURITY_JWT_PUBLIC_KEY:}
     expiration-minutes: 120

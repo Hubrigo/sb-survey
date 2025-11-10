@@ -16,5 +16,5 @@ spring:
 
 security:
   jwt:
-    private-key: ${SECURITY_JWT_PRIVATE_KEY}
-    public-key: ${SECURITY_JWT_PUBLIC_KEY}
+    private-key: ${SECURITY_JWT_PRIVATE_KEY:}
+    public-key: ${SECURITY_JWT_PUBLIC_KEY:}
