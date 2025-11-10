@@ -2,9 +2,9 @@ spring:
   application:
     name: survey-backend
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/sbsurvey}
-    username: ${SPRING_DATASOURCE_USERNAME:survey}
-    password: ${SPRING_DATASOURCE_PASSWORD:survey}
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -27,5 +27,5 @@ logging:
 
 security:
   jwt:
-    secret: ${SECURITY_JWT_SECRET:change-me-super-secret-key}
+    secret: ${SECURITY_JWT_SECRET}
     expiration-minutes: 120
