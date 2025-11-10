@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createSurvey, fetchSurvey, updateSurvey } from '../../api/surveys.js';
+import LogoutButton from '../../components/shared/LogoutButton.jsx';
 
 const emptyQuestion = () => ({
   prompt: '',
@@ -77,14 +78,17 @@ const SurveyBuilderPage = () => {
 
   return (
     <div className="space-y-4">
-      <header className="d-flex justify-content-between align-items-center">
+      <header className="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
         <div>
           <h1 className="h3 text-primary mb-1">{isEdit ? 'Editar encuesta' : 'Nueva encuesta'}</h1>
           <p className="text-muted mb-0">Define las preguntas y opciones disponibles.</p>
         </div>
-        <Link className="btn btn-outline-secondary" to="/admin/surveys">
-          Volver
-        </Link>
+        <div className="d-flex flex-column flex-md-row gap-2">
+          <Link className="btn btn-outline-secondary" to="/admin/surveys">
+            Volver
+          </Link>
+          <LogoutButton className="flex-fill flex-md-grow-0" variant="outline-primary" />
+        </div>
       </header>
       <form className="bg-white rounded-4 shadow-sm p-4 space-y-4" onSubmit={handleSubmit}>
         <div className="row g-3">

@@ -1,14 +1,10 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import LogoutButton from '../shared/LogoutButton.jsx';
 import { useAuth } from '../../hooks/useAuth.js';
 
 const MainLayout = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -41,7 +37,7 @@ const MainLayout = () => {
                   <button className="btn btn-light" onClick={() => navigate('/register')}>Registrarse</button>
                 </>
               ) : (
-                <button className="btn btn-outline-light" onClick={handleLogout}>Cerrar sesión</button>
+                <LogoutButton variant="outline-light" />
               )}
             </div>
           </div>

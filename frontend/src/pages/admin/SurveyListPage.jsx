@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteSurvey, fetchAdminSurveys, togglePublication } from '../../api/surveys.js';
+import LogoutButton from '../../components/shared/LogoutButton.jsx';
 
 const SurveyListPage = () => {
   const [surveys, setSurveys] = useState([]);
@@ -24,14 +25,17 @@ const SurveyListPage = () => {
 
   return (
     <div className="space-y-4">
-      <header className="d-flex justify-content-between align-items-center">
+      <header className="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
         <div>
           <h1 className="h3 text-primary mb-1">Encuestas</h1>
           <p className="text-muted mb-0">Administra tus encuestas creadas.</p>
         </div>
-        <Link className="btn btn-primary" to="/admin/surveys/new">
-          Nueva encuesta
-        </Link>
+        <div className="d-flex flex-column flex-md-row gap-2">
+          <Link className="btn btn-primary" to="/admin/surveys/new">
+            Nueva encuesta
+          </Link>
+          <LogoutButton className="flex-fill flex-md-grow-0" variant="outline-primary" />
+        </div>
       </header>
       <div className="table-responsive bg-white rounded-4 shadow-sm">
         <table className="table align-middle mb-0">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchAdminSurveys, fetchResponses } from '../../api/surveys.js';
+import LogoutButton from '../../components/shared/LogoutButton.jsx';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const DashboardPage = () => {
@@ -51,9 +52,12 @@ const DashboardPage = () => {
               ))
             )}
           </select>
-          <Link className="btn btn-primary" to="/admin/surveys/new">
-            Crear nueva encuesta
-          </Link>
+          <div className="d-flex flex-column flex-md-row gap-2">
+            <Link className="btn btn-primary" to="/admin/surveys/new">
+              Crear nueva encuesta
+            </Link>
+            <LogoutButton className="flex-fill flex-md-grow-0" variant="outline-primary" />
+          </div>
         </div>
       </header>
       <section className="bg-white rounded-4 shadow-sm p-4">
